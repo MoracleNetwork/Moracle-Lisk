@@ -1,0 +1,32 @@
+{
+  "name": "moracle",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^12.12.0",
+    "axios": "^0.19.0",
+    "blake2": "^4.0.0",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "graphql": "^14.5.8",
+    "merge-graphql-schemas": "^1.7.0",
+    "minimist": "^1.2.0",
+    "pg": "^7.12.1",
+    "ts-node": "^8.4.1",
+    "typeorm": "^0.2.20",
+    "typescript": "^3.6.4",
+    "vm2": "^3.8.4"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.6.0",
+    "@typescript-eslint/parser": "^2.6.0",
+    "eslint": "^6.6.0",
+    "source-map-support": "^0.5.16"
+  }
+}
