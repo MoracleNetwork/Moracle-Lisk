@@ -1,3 +1,6 @@
+> **_NOTE:_**  This version of Moracle is intended for the development and testing of resolvers only.
+> Network consensus components currently do not work, and will be released as part of our testnet this December.
+
 ## Documentation coming very soon.
 
 # Running and installing
@@ -32,6 +35,8 @@ Open a new terminal window/tab and start the Moracle HTTP server with `cd moracl
 
 
 
-# Moracle node and Lisk custom blockchain
 
+
+
+# Code help
 HUGE thanks to ThePool/Karek, Sidechain Solutions, and Moosty.
