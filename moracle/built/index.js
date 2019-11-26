@@ -56,7 +56,6 @@ var broadcastToAllKnownNodes = require("./broadcast").broadcastToAllKnownNodes;
 var showHelp = require("./Help");
 var merge_graphql_schemas_1 = require("merge-graphql-schemas");
 var graphql_1 = require("graphql");
-typeorm_1.createConnection();
 var app = express();
 var bodyParser = require("body-parser");
 app.use(bodyParser.json());
@@ -79,16 +78,18 @@ function setup() {
         var dbResolvers;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0:
-                    if (!argv.localhost) return [3 /*break*/, 1];
+                case 0: return [4 /*yield*/, typeorm_1.createConnection()];
+                case 1:
+                    _a.sent();
+                    if (!argv.localhost) return [3 /*break*/, 2];
                     myIP = "127.0.0.1";
-                    return [3 /*break*/, 3];
-                case 1: return [4 /*yield*/, axios.get("http://checkip.amazonaws.com/")];
-                case 2:
+                    return [3 /*break*/, 4];
+                case 2: return [4 /*yield*/, axios.get("http://checkip.amazonaws.com/")];
+                case 3:
                     myIP = (_a.sent()).data.slice(0, -1);
-                    _a.label = 3;
-                case 3: return [4 /*yield*/, Resolver_1.Resolver.find()];
-                case 4:
+                    _a.label = 4;
+                case 4: return [4 /*yield*/, Resolver_1.Resolver.find()];
+                case 5:
                     dbResolvers = _a.sent();
                     dbResolvers.forEach(function (resolver) {
                         var r = ResolverProcessor_1.unserializeResolver(resolver.serialized);

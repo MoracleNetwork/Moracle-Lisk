@@ -20,7 +20,6 @@ const showHelp = require("./Help");
 import { mergeTypes, mergeResolvers } from 'merge-graphql-schemas';
 import { buildSchema } from 'graphql';
 
-createConnection();
 
 const app = express();
 var bodyParser = require("body-parser");
@@ -44,6 +43,8 @@ if (argv.verbose) {
 let myIP;
 
 async function setup() {
+    await createConnection();
+
     if (argv.localhost) {
         myIP = "127.0.0.1";
     } else {
