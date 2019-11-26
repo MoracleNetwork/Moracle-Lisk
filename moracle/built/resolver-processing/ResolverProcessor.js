@@ -43,12 +43,13 @@ var Resolver_1 = require("../entities/Resolver");
 var fs_1 = __importDefault(require("fs"));
 function processResolver(folderName) {
     var _this = this;
-    var schemaMappings = require("../../example-resolvers/" + folderName + "/schemaMappings.js");
+    var root = process.cwd();
+    var schemaMappings = require(root + "/example-resolvers/" + folderName + "/schemaMappings.js");
     var rootFiles = schemaMappings.mappings;
     var resolverRoot = {};
     var resolverRootSources = {};
     Object.keys(rootFiles).forEach(function (e) {
-        var contents = fs_1.default.readFileSync("../../example-resolvers/" + folderName + "/" + rootFiles[e]).toString('utf-8');
+        var contents = fs_1.default.readFileSync(root + "/example-resolvers/" + folderName + "/" + rootFiles[e]).toString('utf-8');
         resolverRoot[e] = function (args) { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 return [2 /*return*/, (new sandbox_1.ResolverFunctionSandbox(contents).run(args))];

@@ -6,17 +6,7 @@ import { Resolver } from '../entities/Resolver';
 
 // This file is intended to be executed directly and serves as a demo for schema merging. 
 (async () => {
-    await createConnection({
-        type: "postgres",
-        host: "localhost",
-        port: 5432,
-        username: "brianoates",
-        password: "",
-        database: "moracle",
-        entities: ["../entities/**/*.js"],
-        migrations: ["../migration/**/*.js"]
-    });
-
+    await createConnection();
     // Construct a schema, using GraphQL schema language
     const resolver: MoracleResolver = processResolver('getArbitraryURL');
     const exchangeResolver = processResolver('exchangeRate');

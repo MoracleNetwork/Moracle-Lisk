@@ -22,12 +22,13 @@ export interface MoracleResolver extends MoracleResolverSerializable {
 
 
 export function processResolver(folderName: string): MoracleResolver {
-    const schemaMappings = require(`../../example-resolvers/${folderName}/schemaMappings.js`);
+    const root: string = process.cwd();
+    const schemaMappings = require(`${root}/example-resolvers/${folderName}/schemaMappings.js`);
     const rootFiles = schemaMappings.mappings;
     const resolverRoot: MoracleResolverRoot = {};
     const resolverRootSources: MoracleResolverRootSources = {}
     Object.keys(rootFiles).forEach(e => {
-        const contents = fs.readFileSync(`../../example-resolvers/${folderName}/${rootFiles[e]}`).toString('utf-8');
+        const contents = fs.readFileSync(`${root}/example-resolvers/${folderName}/${rootFiles[e]}`).toString('utf-8');
         resolverRoot[e] = async (args) => {
             return (new ResolverFunctionSandbox(contents).run(args));
         }

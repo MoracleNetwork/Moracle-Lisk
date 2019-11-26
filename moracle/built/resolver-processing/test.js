@@ -43,16 +43,7 @@ var typeorm_1 = require("typeorm");
     var resolver, exchangeResolver, weatherResolver, cryptoExchangeResolver, resolvers_to_serialize;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, typeorm_1.createConnection({
-                    type: "postgres",
-                    host: "localhost",
-                    port: 5432,
-                    username: "brianoates",
-                    password: "",
-                    database: "moracle",
-                    entities: ["../entities/**/*.js"],
-                    migrations: ["../migration/**/*.js"]
-                })];
+            case 0: return [4 /*yield*/, typeorm_1.createConnection()];
             case 1:
                 _a.sent();
                 resolver = ResolverProcessor_1.processResolver('getArbitraryURL');
