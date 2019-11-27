@@ -3,6 +3,7 @@ const { Application, genesisBlockDevnet } = require('lisk-sdk');
 const configDevnet = require('./config.json');
 const WeatherTransaction = require('./weather_transaction');
 const DollarAmountTransaction = require('./dollar_amount_transaction');
+const GetBitcoinBalanceTransaction = require('./getbitcoinbalance_transaction');
 
 const MoracleChatterModule = require('./modules/MoracleChatter');
 
@@ -15,6 +16,7 @@ configDevnet.modules.http_api.httpPort = 4000;
 const app = new Application(genesisBlockDevnet, configDevnet); 
 app.registerTransaction(WeatherTransaction); 
 app.registerTransaction(DollarAmountTransaction); 
+app.registerTransaction(GetBitcoinBalanceTransaction);
 app.registerModule(MoracleChatterModule);
 
 app 
