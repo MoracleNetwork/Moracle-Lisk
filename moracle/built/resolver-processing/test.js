@@ -38,9 +38,10 @@ var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
 var ResolverProcessor_1 = require("./ResolverProcessor");
 var typeorm_1 = require("typeorm");
+var Resolver_1 = require("../entities/Resolver");
 // This file is intended to be executed directly and serves as a demo for schema merging. 
 (function () { return __awaiter(_this, void 0, void 0, function () {
-    var resolver, exchangeResolver, weatherResolver, cryptoExchangeResolver, resolvers_to_serialize;
+    var resolver, exchangeResolver, weatherResolver, cryptoExchangeResolver, bitcoinAddressResolver, resolvers_to_serialize;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0: return [4 /*yield*/, typeorm_1.createConnection()];
@@ -50,11 +51,21 @@ var typeorm_1 = require("typeorm");
                 exchangeResolver = ResolverProcessor_1.processResolver('exchangeRate');
                 weatherResolver = ResolverProcessor_1.processResolver('currentWeather');
                 cryptoExchangeResolver = ResolverProcessor_1.processResolver('cryptoPrices');
+                bitcoinAddressResolver = ResolverProcessor_1.processResolver('getBitcoinAddressBalance');
+                return [4 /*yield*/, typeorm_1.getConnection()
+                        .createQueryBuilder()
+                        .delete()
+                        .from(Resolver_1.Resolver)
+                        .where("true")
+                        .execute()];
+            case 2:
+                _a.sent();
                 resolvers_to_serialize = [
                     resolver,
                     exchangeResolver,
                     weatherResolver,
-                    cryptoExchangeResolver
+                    cryptoExchangeResolver,
+                    bitcoinAddressResolver
                 ];
                 resolvers_to_serialize.forEach(function (e) {
                     ResolverProcessor_1.serializeAndSaveResolver(e);

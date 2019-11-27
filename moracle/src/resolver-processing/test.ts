@@ -1,7 +1,7 @@
 import { buildSchema, graphql } from 'graphql';
 import { processResolver, MoracleResolver, serializeResolver, unserializeResolver, serializeAndSaveResolver } from './ResolverProcessor';
 import { mergeTypes, mergeResolvers } from 'merge-graphql-schemas';
-import { createConnection } from 'typeorm';
+import { createConnection, getConnection } from 'typeorm';
 import { Resolver } from '../entities/Resolver';
 
 // This file is intended to be executed directly and serves as a demo for schema merging. 
@@ -12,12 +12,22 @@ import { Resolver } from '../entities/Resolver';
     const exchangeResolver = processResolver('exchangeRate');
     const weatherResolver = processResolver('currentWeather');
     const cryptoExchangeResolver = processResolver('cryptoPrices');
+    const bitcoinAddressResolver = processResolver('getBitcoinAddressBalance');
+
+
+    await getConnection()
+        .createQueryBuilder()
+        .delete()
+        .from(Resolver)
+        .where("true")
+        .execute();
 
     const resolvers_to_serialize = [
         resolver,
         exchangeResolver,
         weatherResolver,
-        cryptoExchangeResolver
+        cryptoExchangeResolver,
+        bitcoinAddressResolver
     ];
     resolvers_to_serialize.forEach(e => {
         serializeAndSaveResolver(e);
